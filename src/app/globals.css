@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #070816;
+  --foreground: #f8fafc;
+  --muted: #9aa4b2;
+  --card: #0f1224;
+  --border: rgba(148, 163, 184, 0.18);
+  --accent: #8b5cf6;
+  --accent-2: #22d3ee;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(
+      1200px 600px at 10% -10%,
+      rgba(139, 92, 246, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 100% 0%,
+      rgba(34, 211, 238, 0.12),
+      transparent 55%
+    ),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100%;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: #fff;
+}
+
+.section-padding {
+  padding: 5.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 7rem 0;
+  }
+}
+
+.glass {
+  background: rgba(15, 18, 36, 0.65);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #c084fc 0%, #60a5fa 45%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.7),
+    rgba(34, 211, 238, 0.5)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: required to honor reduced-motion preferences */
+    animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: required to honor reduced-motion preferences */
+    animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: required to honor reduced-motion preferences */
+    transition-duration: 0.01ms !important;
+  }
 }
